@@ -1,7 +1,215 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+    <head>
+        <title>YtcTube</title>
+        <script>
+            function embedVideo() {
+                var youtubeLink = document.getElementById("youtube_link").value;
+                var videoId = extractVideoId(youtubeLink);
+
+                if (videoId) {
+                    var embeddedVideo =
+                        '<iframe src="https://www.youtube.com/embed/' +
+                        videoId +
+                        '" frameborder="0" allowfullscreen>hi</iframe>';
+                    document.getElementById("embedded_video").innerHTML =
+                        embeddedVideo;
+                    document.getElementById("youtube_link").className =
+                        "disabled";
+                } else {
+                    alert("Invalid YouTube link. Please enter a valid link.");
+                }
+            }
+
+            function extractVideoId(link) {
+                var match = link.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+                return match ? match[1] : null;
+            }
+
+            function setDate() {
+                // create a new `Date` object
+                const now = new Date();
+
+                // get the current date and time as a string
+                const currentDateTime = now.toTimeString().substring(0, 8);
+
+                document.getElementById("date").innerText = currentDateTime;
+            }
+
+            document.addEventListener(
+                "keypress",
+                (e) => {
+                    if (e.code === "Enter") {
+                        embedVideo();
+                    }
+                },
+                false
+            );
+
+            window.addEventListener(
+                "load",
+                (e) => {
+                    setDate();
+                    setInterval(setDate, 1000);
+                },
+                false
+            );
+        </script>
+    </head>
+
+    <body>
+        <div class="background"></div>
+        <h1>...</h1>
+        <h2>
+            Just so that you are aware, the time is currently
+            <span id="date"></span>
+        </h2>
+        <br />
+        <p>...</p>
+        <input type="text" id="youtube_link" placeholder="PA53 HRE" required />
+        <!--<input type="button" value="Play" onclick="embedVideo()">-->
+        <div id="embedded_video"></div>
+        <footer>
+            Please use responsibly, everything viewed here is at your own
+            risk.<br />
+            Please be aware the creators of this website take no legal or
+            halachic liability for any usage out of the current guidelines of
+            your local orothdox rabbi.<br />
+            Please see
+            <a
+                href="https://support.google.com/youtube/topic/2803176"
+                target="”_blank”"
+                >T&C's</a
+            >
+            for more details.
+        </footer>
+    </body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: Numberplate;
+            src: url("./UKNumberPlate.ttf");
+        }
+
+        h1:hover,
+        h2:hover,
+        p:hover,
+        footer:hover,
+        #youtube_link:hover {
+            cursor: default;
+        }
+
+        input:hover {
+            cursor: text;
+        }
+
+        html,
+        body,
+        .background {
+            width: 100%;
+            height: 100%;
+        }
+
+        .background {
+            z-index: -1;
+            position: absolute;
+            background-image: url("./lamborghini.jpg");
+            background-repeat: no-repeat;
+            background-position: top center;
+        }
+
+        body {
+            background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body > * {
+            flex-shrink: 0;
+        }
+
+        #embedded_video {
+            width: 1200px;
+            aspect-ratio: 1.7777;
+        }
+
+        #youtube_link {
+            text-align: center;
+
+            padding: 9px;
+            height: 44px;
+            width: 208px;
+
+            margin-top: 548px;
+            margin-left: 8px;
+            background-color: #777777;
+            border-radius: 4px;
+            border: none;
+            color: rgb(0, 0, 0);
+            font-size: 32px;
+            font-family: Numberplate;
+        }
+        #youtube_link::placeholder {
+            font-family: Numberplate;
+            color: rgb(0, 0, 0);
+        }
+        #youtube_link:hover {
+            transform: translateY(-1);
+            outline: none;
+        }
+        #youtube_link:focus-visible {
+            outline: none;
+        }
+        #youtube_link.disabled {
+            display: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 3px solid black;
+            border-radius: 3px;
+        }
+
+        h1 {
+            font-size: 80px;
+            font-family: Bahnschrift;
+            margin-bottom: 0;
+            margin-top: 20px;
+        }
+
+        h1:hover {
+            color: #016952;
+        }
+        p {
+            font-size: 20px;
+            font-family: Bahnschrift;
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        p,
+        footer {
+            color: white;
+        }
+
+        footer {
+            width: 100%;
+            background: #016952;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            margin-top: 5px;
+            line-height: 1.35;
+            border-top: 4px solid white;
+        }
+    </style>
 </html>
